@@ -1,2 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
+using System.Configuration;
+using System.Collections.Specialized;
+
 Console.WriteLine("Hello, World!");
+Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
