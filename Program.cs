@@ -2,6 +2,15 @@
 using System;
 using System.Configuration;
 using System.Collections.Specialized;
+namespace Program;
 
-Console.WriteLine("Hello, World!");
-Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
+class Program
+{
+ 
+ public static void Main(String[] args)
+ {
+    Console.WriteLine("Hello, World!");
+    Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
+ }
+
+}
