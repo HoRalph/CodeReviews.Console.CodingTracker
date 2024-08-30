@@ -7,10 +7,12 @@ namespace Program;
 class Program
 {
  
- public static void Main(String[] args)
- {
-    Console.WriteLine("Hello, World!");
-    Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
- }
+    public static void Main(String[] args)
+    {
+        Console.WriteLine("Hello, World!");
+        Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
+        Input.Menu();
+
+    }
 
 }
