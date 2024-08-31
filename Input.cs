@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.Marshalling;
 class Input
 {
     public static int Menu()
@@ -16,9 +17,23 @@ class Input
             ");
             Console.WriteLine("------------------------------------------");
 
-            return 9;
-    }
+            Console.WriteLine("Please enter an option.");
+            string?result = "";
+            bool validInput = false;
+            int countInputs = 5; //number of valid inputs
+            int input=0; 
+            while(!validInput)
+            {
+                result = Console.ReadLine();
+                validInput = int.TryParse(result, out input) && !(input > countInputs);
+                if (validInput == false)
+                {
+                    Console.WriteLine("Invalid Input! Please retry.");
+                }
+            }
 
+            return input;
+    }
 
     
 }

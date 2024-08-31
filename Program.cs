@@ -11,7 +11,7 @@ class Program
     {
         Console.WriteLine("Hello, World!");
         Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
-        Input.Menu();
+        Console.WriteLine(Input.Menu());
 
     }
 
