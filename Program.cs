@@ -12,6 +12,7 @@ class Program
         
         while(true)
         {
+            DatabaseController.CreateTable();
             switch(Input.Menu())
             {
                 case 0:
@@ -19,6 +20,7 @@ class Program
                 return;
                 
                 case 1:
+                    
                     break;
                 
                 case 2:
