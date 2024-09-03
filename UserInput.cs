@@ -32,7 +32,15 @@ class Input
                 Console.WriteLine("Invalid Input! Please retry.");
             }
         }
-        
         return input;
+    }
+
+    public static void InsertInput()
+    {
+        Console.WriteLine("Please enter the start data/time in MM/DD/yyyy HH:MM");
+        string? startDateTime = Console.ReadLine();
+        Console.WriteLine("Please enter the End data/time in MM/DD/yyyy HH:MM");
+        string? endDateTime = Console.ReadLine();
+
     }
 }
