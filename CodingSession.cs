@@ -6,18 +6,29 @@ using System.Dynamic;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 
-class CodingSession
+public class CodingSession
 {
     //startTime, endTime, Duration
-    public static string StartDateString {get;set;}
-    public static string EndDateString {get;set;}
-    public DateTime StartDate = ConvertDate(StartDateString);
-    public DateTime EndDate = ConvertDate(EndDateString);
-    private TimeSpan Duration()
+    public  string StartDateString {get;set;}
+    public  string EndDateString {get;set;}
+    public DateTime StartDate;
+    public DateTime EndDate;
+    public TimeSpan Duration;    
+    public void SetStartDate(string dateString)
     {
-        return EndDate - StartDate;       
+    this.StartDate = ConvertDate(this.StartDateString);
+    //public DateTime EndDate = ConvertDate(EndDateString);
     }
-    private static DateTime ConvertDate(string DateString)
+    public void SetEndDate(string dateString)
+    {
+    this.EndDate = ConvertDate(this.EndDateString);
+    //public DateTime EndDate = ConvertDate(EndDateString);
+    }
+    public void SetDuration()
+    {
+        this.Duration =  this.EndDate - this.StartDate;
+    }
+    public DateTime ConvertDate(string DateString)
     {
         DateTime dateValue = DateTime.Today;
         CultureInfo enUS = new CultureInfo("en-US");

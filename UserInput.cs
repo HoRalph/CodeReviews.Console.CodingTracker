@@ -38,27 +38,34 @@ class Input
     public static void InsertInput()
     {
         bool validDate = false;
-
+        string?startDateTime="";
+        string?endDateTime="";
+        CodingSession mySession = new CodingSession();
         while(!validDate)
         {
             Console.WriteLine("Please enter the start data/time in MM/DD/yyyy HH:MM");
-            string? startDateTime = Console.ReadLine();
+            startDateTime = Console.ReadLine();
             validDate = Validation.ValidDateTimeFormat(startDateTime);
             if (!validDate)
             {
                  Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
             }
+            
         }
+        
         validDate = false;
         while(!validDate)
         {
             Console.WriteLine("Please enter the End data/time in MM/DD/yyyy HH:MM");
-            string? endDateTime = Console.ReadLine();
+            endDateTime = Console.ReadLine();
             validDate = Validation.ValidDateTimeFormat(endDateTime);
             if (!validDate)
             {
                  Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
             }
         }
+        mySession.SetStartDate(startDateTime);
+        mySession.SetEndDate(endDateTime);
+        mySession.SetDuration();
     }
 }
