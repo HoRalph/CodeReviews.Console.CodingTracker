@@ -13,12 +13,13 @@ class Program
         
         while(true)
         {
-            DatabaseController.ExecuteNonQuery(@"CREATE TABLE IF NOT EXISTS CodingSessions (
+            CodingSession mySession = new CodingSession();
+            /*DatabaseController.ExecuteNonQuery(@"CREATE TABLE IF NOT EXISTS CodingSessions (
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
             StartDateTime STRING,
             EndDateTime STRING,
-            Duration STRING);");
-            //DatabaseController.CreateTable();
+            Duration STRING);");*/
+            DatabaseController.CreateTable();
             switch(Input.Menu())
             {
                 case 0:
@@ -31,9 +32,10 @@ class Program
                 
                 case 2:
                     Input.InsertInput();
-                    Console.WriteLine(@$"{Input.startDateTime}
-                    {Input.endDateTime}
-                    ");
+                    mySession.StartDate = mySession.ConvertDate(Input.startDateTime);
+                    mySession.EndDate = mySession.ConvertDate(Input.endDateTime);
+                    Console.WriteLine(mySession.StartDate);
+                    Console.WriteLine(mySession.EndDate);
                     break;
                 
                 case 3:

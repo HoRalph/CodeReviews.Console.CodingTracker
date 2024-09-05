@@ -26,12 +26,12 @@ public class CodingSession
     public DateTime StartDate
     {
         get { return startDate; }
-        set { startDate = ConvertDate(this.startDateString);}
+        set { startDate = value;}
     }
     public DateTime EndDate
     {
         get {return endDate;}
-        set {endDate = ConvertDate(this.endDateString);}
+        set {endDate = value;}
     }
     public TimeSpan Duration
     {
@@ -44,7 +44,7 @@ public class CodingSession
         CultureInfo enUS = new CultureInfo("en-US");
         if(Validation.ValidDateTimeFormat(DateString))
         {
-            DateTime.TryParseExact(DateString,"MM/dd/yyyy HH:MM",enUS, DateTimeStyles.None, out dateValue);
+            DateTime.TryParseExact(DateString,"MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out dateValue);
         }
         return dateValue;
     }
