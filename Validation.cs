@@ -9,7 +9,7 @@ class Validation
         CultureInfo enUS = new CultureInfo("en-US");
         DateTime dateValue = DateTime.Today;
         bool validDate = false;
-            validDate = DateTime.TryParseExact(DateString, "MM/dd/yyyy HH:MM",enUS, DateTimeStyles.None, out dateValue);
+            validDate = DateTime.TryParseExact(DateString, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out dateValue);
         return validDate;
     }
 

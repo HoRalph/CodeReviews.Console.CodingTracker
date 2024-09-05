@@ -5,9 +5,10 @@ namespace Program;
 
 class Program
 {
- 
+    
     public static void Main(String[] args)
     {
+        CodingSession mySession = new CodingSession();
         Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
         
         while(true)
@@ -26,11 +27,14 @@ class Program
                 return;
                 
                 case 1:
-                    
+
                     break;
                 
                 case 2:
-                    DatabaseController.InsertRecord("08/25/2024", "09/01/2024", "5");
+                    Input.InsertInput();
+                    Console.WriteLine(@$"{mySession.StartDate}
+                    {mySession.EndDate}
+                    {mySession.Duration}");
                     break;
                 
                 case 3:

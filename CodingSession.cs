@@ -9,24 +9,36 @@ using System.Runtime.CompilerServices;
 public class CodingSession
 {
     //startTime, endTime, Duration
-    public  string StartDateString {get;set;}
-    public  string EndDateString {get;set;}
-    public DateTime StartDate;
-    public DateTime EndDate;
-    public TimeSpan Duration;    
-    public void SetStartDate(string dateString)
+    public  string startDateString;
+    public  string endDateString;
+    private DateTime startDate;
+    private DateTime endDate;
+    private TimeSpan duration;
+
+    public string StartDateString
     {
-    this.StartDate = ConvertDate(this.StartDateString);
-    //public DateTime EndDate = ConvertDate(EndDateString);
+        get { return startDateString; }
+        set { startDateString = value;}
     }
-    public void SetEndDate(string dateString)
+    public string EndDateString
     {
-    this.EndDate = ConvertDate(this.EndDateString);
-    //public DateTime EndDate = ConvertDate(EndDateString);
+        get { return endDateString; }
+        set { endDateString = value;}
     }
-    public void SetDuration()
+    public DateTime StartDate
     {
-        this.Duration =  this.EndDate - this.StartDate;
+        get { return startDate; }
+        set { startDate = ConvertDate(this.startDateString);}
+    }
+    public DateTime EndTime
+    {
+        get {return endDate;}
+        set {endDate = ConvertDate(this.endDateString);}
+    }
+    public TimeSpan Duration
+    {
+        get {return duration;}
+        set {duration = this.endDate - this.startDate;}
     }
     public DateTime ConvertDate(string DateString)
     {
