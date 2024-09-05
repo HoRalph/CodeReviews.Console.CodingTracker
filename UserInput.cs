@@ -1,7 +1,10 @@
 using System;
 using System.Runtime.InteropServices.Marshalling;
+
 class Input
 {
+    public static string?startDateTime="";
+    public static string?endDateTime="";
     public static int Menu()
     {
         string?result = "";
@@ -38,8 +41,7 @@ class Input
     public static void InsertInput()
     {
         bool validDate = false;
-        string?startDateTime="";
-        string?endDateTime="";
+
         CodingSession mySession = new CodingSession();
         while(!validDate)
         {
@@ -63,9 +65,6 @@ class Input
             {
                  Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
             }
-        }
-        mySession.SetStartDate(startDateTime);
-        mySession.SetEndDate(endDateTime);
-        mySession.SetDuration();
+        }        
     }
 }

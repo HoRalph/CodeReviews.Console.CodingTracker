@@ -8,12 +8,11 @@ class Program
     
     public static void Main(String[] args)
     {
-        CodingSession mySession = new CodingSession();
+        //CodingSession mySession = new CodingSession();
         Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
         
         while(true)
         {
-
             DatabaseController.ExecuteNonQuery(@"CREATE TABLE IF NOT EXISTS CodingSessions (
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
             StartDateTime STRING,
@@ -32,9 +31,9 @@ class Program
                 
                 case 2:
                     Input.InsertInput();
-                    Console.WriteLine(@$"{mySession.StartDate}
-                    {mySession.EndDate}
-                    {mySession.Duration}");
+                    Console.WriteLine(@$"{Input.startDateTime}
+                    {Input.endDateTime}
+                    ");
                     break;
                 
                 case 3:

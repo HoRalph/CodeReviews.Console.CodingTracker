@@ -2,10 +2,8 @@ using System;
 using System.Configuration;
 using System.Collections.Specialized;
 using Microsoft.Data.Sqlite;
-using System.Dynamic;
 using System.Globalization;
-using System.Runtime.CompilerServices;
-
+//namespace Program;
 public class CodingSession
 {
     //startTime, endTime, Duration
@@ -30,7 +28,7 @@ public class CodingSession
         get { return startDate; }
         set { startDate = ConvertDate(this.startDateString);}
     }
-    public DateTime EndTime
+    public DateTime EndDate
     {
         get {return endDate;}
         set {endDate = ConvertDate(this.endDateString);}
