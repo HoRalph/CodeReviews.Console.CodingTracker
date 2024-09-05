@@ -34,8 +34,10 @@ class Program
                     Input.InsertInput();
                     mySession.StartDate = mySession.ConvertDate(Input.startDateTime);
                     mySession.EndDate = mySession.ConvertDate(Input.endDateTime);
+                    mySession.Duration = mySession.EndDate - mySession.StartDate;
                     Console.WriteLine(mySession.StartDate);
                     Console.WriteLine(mySession.EndDate);
+                    Console.WriteLine(mySession.Duration);
                     break;
                 
                 case 3:

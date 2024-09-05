@@ -12,7 +12,6 @@ public class CodingSession
     private DateTime startDate;
     private DateTime endDate;
     private TimeSpan duration;
-
     public string StartDateString
     {
         get { return startDateString; }
@@ -36,7 +35,7 @@ public class CodingSession
     public TimeSpan Duration
     {
         get {return duration;}
-        set {duration = this.endDate - this.startDate;}
+        set {duration = value;}
     }
     public DateTime ConvertDate(string DateString)
     {
