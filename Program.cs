@@ -27,7 +27,8 @@ class Program
                 return;
                 
                 case 1:
-
+                    DatabaseController.ViewTable();
+                    Console.ReadLine();
                     break;
                 
                 case 2:
