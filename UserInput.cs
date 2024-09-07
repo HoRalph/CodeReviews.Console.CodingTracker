@@ -1,10 +1,9 @@
 using System;
-using System.Runtime.InteropServices.Marshalling;
-
 class Input
 {
     public static string?startDateTime="";
     public static string?endDateTime="";
+    public static int updateId=0;
     public static int Menu()
     {
         string?result = "";
@@ -66,5 +65,20 @@ class Input
                  Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
             }
         }        
+    }
+    public static void InputId()
+    {        
+        bool validInput = false;
+        string?result="";
+        while(!validInput)
+        {
+            Console.WriteLine("Please enter the ID of the session you would like to update.");
+            result = Console.ReadLine();
+            if (result != null || result!= "")
+            {
+                validInput = true;
+            }
+            validInput = int.TryParse(result, out updateId);
+        }
     }
 }

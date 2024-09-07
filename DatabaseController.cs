@@ -29,7 +29,7 @@ class DatabaseController
             connection.Execute(sql);
         }   
     }
-    /*public static object ExecuteQuery(string sql, object[] parameters)
+    public static IEnumerable<session> ExecuteQuery(string sql, object[] parameters)
     {
         string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
@@ -37,14 +37,14 @@ class DatabaseController
             return connection.Query<session>(sql, parameters);
         }   
     }
-    public static Collection ExecuteQuery(string sql)
+    public static IEnumerable<session> ExecuteQuery(string sql)
     {
         string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
         {
             return connection.Query<session>(sql);
         }   
-    }*/
+    }
     public static void CreateTable()
     {   
             var sql = @"CREATE TABLE IF NOT EXISTS CodingSessions (
@@ -56,16 +56,11 @@ class DatabaseController
     }
     public static void ViewTable()
     {
-        string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
-        var sql = @"SELECT * FROM CodingSessions";
-        using (var connection = new SqliteConnection(connectionString))
-        {
-        var sessions = connection.Query<session>(sql);
-        
-        foreach (var session in sessions)
+        var sql = "SELECT * FROM CodingSessions";
+        Console.WriteLine($"ID      StartDateTime     EndDateTime     Duration");
+        foreach (var session in ExecuteQuery(sql))
         {
             Console.WriteLine($"{session.Id}      {session.StartDateTime}     {session.EndDateTime}     {session.Duration}");
-        }
         }
     }
 
@@ -80,7 +75,7 @@ class DatabaseController
 
     public static void UpdateRecord(int iD, string StartDateTime, string EndDateTime, string Duration)
     {
-        var sql = @"UPDATE CodingSesions 
+        var sql = @"UPDATE CodingSessions 
         SET StartDateTime = @StartDateTime, EndDateTime = @EndDateTime, Duration = @Duration 
         WHERE Id = @iD;";
         object[] parameters =  {new{StartDateTime, EndDateTime, Duration, iD}};
@@ -89,15 +84,15 @@ class DatabaseController
     
     public static void DeleteRecord(int iD)
     {
-        var sql = @"DELETE FROM CodingSesions 
-        WHERE Id = iD;";
+        var sql = @"DELETE FROM CodingSessions 
+        WHERE Id = @iD;";
         object[] parameters =  {new{iD}};
         ExecuteNonQuery(sql, parameters);
     }
     
     public static void DeleteTable()
     {
-        var sql = @"DELETE FROM CodingSesions;";
+        var sql = @"DELETE FROM CodingSessions;";
         ExecuteNonQuery(sql);  
     }
 }

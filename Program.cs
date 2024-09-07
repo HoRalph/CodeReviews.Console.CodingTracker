@@ -14,11 +14,6 @@ class Program
         while(true)
         {
             CodingSession mySession = new CodingSession();
-            /*DatabaseController.ExecuteNonQuery(@"CREATE TABLE IF NOT EXISTS CodingSessions (
-            Id INTEGER PRIMARY KEY AUTOINCREMENT,
-            StartDateTime STRING,
-            EndDateTime STRING,
-            Duration STRING);");*/
             DatabaseController.CreateTable();
             switch(Input.Menu())
             {
@@ -36,18 +31,29 @@ class Program
                     mySession.StartDate = mySession.ConvertDate(Input.startDateTime);
                     mySession.EndDate = mySession.ConvertDate(Input.endDateTime);
                     mySession.Duration = mySession.EndDate - mySession.StartDate;
-                    Console.WriteLine(mySession.StartDate);
-                    Console.WriteLine(mySession.EndDate);
-                    Console.WriteLine(mySession.Duration);
+                    DatabaseController.InsertRecord(mySession.StartDate.ToString(), mySession.EndDate.ToString(), mySession.Duration.ToString());
                     break;
                 
                 case 3:
+                    DatabaseController.ViewTable();
+                    Console.WriteLine();
+                    Input.InputId();
+                    DatabaseController.DeleteRecord(Input.updateId);
                     break;
                 
                 case 4:
+                    DatabaseController.ViewTable();
+                    Console.WriteLine();
+                    Input.InputId();
+                    Input.InsertInput();
+                    mySession.StartDate = mySession.ConvertDate(Input.startDateTime);
+                    mySession.EndDate = mySession.ConvertDate(Input.endDateTime);
+                    mySession.Duration = mySession.EndDate - mySession.StartDate;
+                    DatabaseController.UpdateRecord(Input.updateId,mySession.StartDate.ToString(), mySession.EndDate.ToString(), mySession.Duration.ToString());
                     break;
                 
                 case 5:
+                    DatabaseController.DeleteTable();
                     break;
                 
                 default:
