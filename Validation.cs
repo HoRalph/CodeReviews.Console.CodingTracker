@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Spectre.Console;
 class Validation
 {
     
@@ -62,18 +63,20 @@ class Validation
         {
             foreach(string _endDate in endDates)
             {
-                bool validStartDate = DateTime.TryParseExact(_startDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime startDateValue);
-                bool validEndDate = DateTime.TryParseExact(_endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime endDateValue);
+                bool validStartDate = DateTime.TryParseExact(_startDate, "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime startDateValue);
+                bool validEndDate = DateTime.TryParseExact(_endDate, "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime endDateValue);
                 bool validInputStartDate = DateTime.TryParseExact(startDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputStartDateValue);
                 bool validInputEndDate = DateTime.TryParseExact(endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputEndDateValue);
-                if (inputStartDateValue <= endDateValue || inputEndDateValue >= startDateValue)
+                if (inputStartDateValue <= endDateValue && inputStartDateValue >= startDateValue)
                 {
                     return false;
                 }
-                else
-                    return true;
+                else if (inputEndDateValue <= endDateValue && inputEndDateValue >= startDateValue)
+                {
+                    return false;
+                }
             }
         }
-        return false;
+        return true;
     }
 }

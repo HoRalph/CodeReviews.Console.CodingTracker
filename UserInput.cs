@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Xml.Schema;
 class Input
 {
     public static string?startDateTime="";
@@ -41,40 +43,37 @@ class Input
     {
         bool validDate = false;
 
-        CodingSession mySession = new CodingSession();
         while(!validDate)
         {
+            int verifyResults = 99;
+            while(verifyResults>0)
+            {
             Console.WriteLine("Please enter the start data/time in MM/DD/yyyy HH:MM");
             startDateTime = Console.ReadLine();
             validDate = Validation.ValidDateTimeFormat(startDateTime);
-            if (!validDate)
-            {
-                 Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
-            }
-            
-        }
-        
-        validDate = false;
-        while(!validDate)
-        {
             Console.WriteLine("Please enter the End data/time in MM/DD/yyyy HH:MM");
             endDateTime = Console.ReadLine();
-            validDate = Validation.ValidDateTimeFormat(endDateTime);
-            if (!validDate)
+            verifyResults =  Validation.VerifyDates(startDateTime, endDateTime);
+            
+            switch (verifyResults)
             {
-                 Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
+                case 1:
+                    Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
+                    break;
+                case 2:
+                    Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
+                    break;
+                case 3:
+                    Console.WriteLine("Start date time does not precede end date time. Please re-enter.");
+                    break;
+                case 4:
+                    Console.WriteLine("Invalid session! overlapping sessions. Please re-enter.");
+                    break;                
+                default:
+                    break;
             }
-        }        
-        validDate = false;
-        while(!validDate)
-        {
-            validDate = Validation.ValidSession(startDateTime,endDateTime);
-            validDate = Validation.ValidDateTimeFormat(endDateTime);
-            if (!validDate)
-            {
-                 Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
             }
-        }  
+        }
     }
     public static void InputId()
     {        

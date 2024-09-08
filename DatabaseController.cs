@@ -54,14 +54,15 @@ class DatabaseController
             Duration STRING);";
             ExecuteNonQuery(sql);         
     }
-    public static void ViewTable()
+    public static List<String[]> ViewTable()
     {
         var sql = "SELECT * FROM CodingSessions";
-        Console.WriteLine($"ID      StartDateTime     EndDateTime     Duration");
+        List<string[]> rows = new List<string[]>();
         foreach (var session in ExecuteQuery(sql))
         {
-            Console.WriteLine($"{session.Id}      {session.StartDateTime}     {session.EndDateTime}     {session.Duration}");
+            rows.Add([session.Id, session.StartDateTime, session.EndDateTime, session.Duration]);
         }
+        return rows;
     }
     public static List<string> GetStartDates()
     {
@@ -79,7 +80,7 @@ class DatabaseController
         List<string> datesList = new List<string>();
         foreach (var session in ExecuteQuery(sql))
         {
-            datesList.Add(session.StartDateTime);
+            datesList.Add(session.EndDateTime);
         }
         return datesList;
     }

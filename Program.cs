@@ -21,8 +21,10 @@ class Program
                 return;
                 
                 case 1:
+                    
                     Console.Clear();
-                    DatabaseController.ViewTable();
+                    Visualisation.DrawTable(DatabaseController.ViewTable());
+                    Console.WriteLine();
                     Console.ReadLine();
                     break;
                 
@@ -56,11 +58,7 @@ class Program
                     break;
                 
                 case 5:
-                    Console.Clear();
-                    Visualisation.DrawTable();
-                    Console.WriteLine();
-                    Console.ReadLine();
-                    //DatabaseController.DeleteTable();
+                    DatabaseController.DeleteTable();
                     break;
                 
                 default:
