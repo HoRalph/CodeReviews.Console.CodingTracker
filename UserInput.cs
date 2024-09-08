@@ -65,6 +65,16 @@ class Input
                  Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
             }
         }        
+        validDate = false;
+        while(!validDate)
+        {
+            validDate = Validation.ValidSession(startDateTime,endDateTime);
+            validDate = Validation.ValidDateTimeFormat(endDateTime);
+            if (!validDate)
+            {
+                 Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
+            }
+        }  
     }
     public static void InputId()
     {        

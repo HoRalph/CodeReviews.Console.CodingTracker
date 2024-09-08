@@ -5,7 +5,6 @@ namespace Program;
 
 class Program
 {
-    
     public static void Main(String[] args)
     {
         //CodingSession mySession = new CodingSession();
@@ -22,11 +21,13 @@ class Program
                 return;
                 
                 case 1:
+                    Console.Clear();
                     DatabaseController.ViewTable();
                     Console.ReadLine();
                     break;
                 
                 case 2:
+                    Console.Clear();
                     Input.InsertInput();
                     mySession.StartDate = mySession.ConvertDate(Input.startDateTime);
                     mySession.EndDate = mySession.ConvertDate(Input.endDateTime);
@@ -35,6 +36,7 @@ class Program
                     break;
                 
                 case 3:
+                    Console.Clear();
                     DatabaseController.ViewTable();
                     Console.WriteLine();
                     Input.InputId();
@@ -42,6 +44,7 @@ class Program
                     break;
                 
                 case 4:
+                    Console.Clear();
                     DatabaseController.ViewTable();
                     Console.WriteLine();
                     Input.InputId();
@@ -53,12 +56,15 @@ class Program
                     break;
                 
                 case 5:
-                    DatabaseController.DeleteTable();
+                    Console.Clear();
+                    Visualisation.DrawTable();
+                    Console.WriteLine();
+                    Console.ReadLine();
+                    //DatabaseController.DeleteTable();
                     break;
                 
                 default:
                     return;
-            
             }
         }
     }

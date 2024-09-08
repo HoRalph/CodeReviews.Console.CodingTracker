@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 using Microsoft.Data.Sqlite;
 using Dapper;
-using Microsoft.VisualBasic;
+using System.Globalization;
 public class session
 {
     public string Id {get; set;}
@@ -63,7 +63,26 @@ class DatabaseController
             Console.WriteLine($"{session.Id}      {session.StartDateTime}     {session.EndDateTime}     {session.Duration}");
         }
     }
-
+    public static List<string> GetStartDates()
+    {
+        var sql = "SELECT StartDateTime FROM CodingSessions";
+        List<string> datesList = new List<string>();
+        foreach (var session in ExecuteQuery(sql))
+        {
+            datesList.Add(session.StartDateTime);
+        }
+        return datesList;
+    }
+        public static List<string> GetEndDates()
+    {
+        var sql = "SELECT EndDateTime FROM CodingSessions";
+        List<string> datesList = new List<string>();
+        foreach (var session in ExecuteQuery(sql))
+        {
+            datesList.Add(session.StartDateTime);
+        }
+        return datesList;
+    }
     public static void InsertRecord(string StartDateTime, string EndDateTime, string Duration)
     {
         var sql = @"INSERT INTO CodingSessions 
