@@ -65,7 +65,7 @@ class DatabaseController
         }
         return rows;
     }
-    public static List<string> GetStartDates(int iD=-1)
+    public static List<string> GetStartDates(int iD=0)
     {
         var sql = "SELECT StartDateTime FROM CodingSessions WHERE Id <> @iD";
         var parameters = new DynamicParameters();
@@ -77,7 +77,7 @@ class DatabaseController
         }
         return datesList;
     }
-        public static List<string> GetEndDates(int iD  =-1)
+        public static List<string> GetEndDates(int iD  =0)
     {
         var sql = "SELECT EndDateTime FROM CodingSessions";
         var parameters = new DynamicParameters();

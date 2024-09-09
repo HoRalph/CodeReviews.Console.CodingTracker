@@ -5,7 +5,7 @@ class Validation
 {
     
     //Verify dates format
-    public static int VerifyDates(string startDate, string endDate, int iD = -1)
+    public static int VerifyDates(string startDate, string endDate, int iD = 0)
     {
      if(!ValidDateTimeFormat(startDate))
      {
@@ -62,7 +62,7 @@ class Validation
         {
             return true;
         }
-        for (int i = 0; i<=startDates.Count;i++)
+        for (int i = 0; i<startDates.Count;i++)
         {
                 bool validStartDate = DateTime.TryParseExact(startDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime startDateValue);
                 bool validEndDate = DateTime.TryParseExact(endDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime endDateValue);
