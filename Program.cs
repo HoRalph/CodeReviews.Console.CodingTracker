@@ -7,7 +7,6 @@ class Program
 {
     public static void Main(String[] args)
     {
-        //CodingSession mySession = new CodingSession();
         Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
         
         while(true)
@@ -58,14 +57,7 @@ class Program
                     break;
                 
                 case 5:
-                    int ID = int.Parse(Console.ReadLine());
-                    List<string> test = DatabaseController.GetStartDates(ID);
-                    List<string> endtest = DatabaseController.GetEndDates(ID);
-                    foreach(string date in test)
-                    {
-                        Console.WriteLine(date);
-                    }
-                    //DatabaseController.DeleteTable();
+                    DatabaseController.DeleteTable();
                     break;
                 
                 default:

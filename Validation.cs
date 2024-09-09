@@ -41,8 +41,8 @@ class Validation
     public static bool ValidDuration(string startDate, string endDate) 
     {
         CultureInfo enUS = new CultureInfo("en-US");
-        bool validInputStartDate = DateTime.TryParseExact(startDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputStartDateValue);
-        bool validInputEndDate = DateTime.TryParseExact(endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputEndDateValue);
+        DateTime.TryParseExact(startDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputStartDateValue);
+        DateTime.TryParseExact(endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputEndDateValue);
         return inputEndDateValue > inputStartDateValue;
     }
     //verify no overlap dates
@@ -66,8 +66,8 @@ class Validation
         {
                 bool validStartDate = DateTime.TryParseExact(startDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime startDateValue);
                 bool validEndDate = DateTime.TryParseExact(endDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime endDateValue);
-                bool validInputStartDate = DateTime.TryParseExact(startDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputStartDateValue);
-                bool validInputEndDate = DateTime.TryParseExact(endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputEndDateValue);
+                DateTime.TryParseExact(startDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputStartDateValue);
+                DateTime.TryParseExact(endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputEndDateValue);
                 if ((inputStartDateValue <= endDateValue) && (inputStartDateValue >= startDateValue))
                 {
                     return false;

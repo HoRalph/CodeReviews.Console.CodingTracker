@@ -3,8 +3,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 using Microsoft.Data.Sqlite;
 using Dapper;
-using System.Globalization;
-public class session
+public class Session
 {
     public string Id {get; set;}
     public string StartDateTime {get; set;}
@@ -29,20 +28,20 @@ class DatabaseController
             connection.Execute(sql);
         }   
     }
-    public static IEnumerable<session> ExecuteQuery(string sql, DynamicParameters parameters)
+    public static IEnumerable<Session> ExecuteQuery(string sql, DynamicParameters parameters)
     {
         string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
         {
-            return connection.Query<session>(sql, parameters);
+            return connection.Query<Session>(sql, parameters);
         }   
     }
-    public static IEnumerable<session> ExecuteQuery(string sql)
+    public static IEnumerable<Session> ExecuteQuery(string sql)
     {
         string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
         {
-            return connection.Query<session>(sql);
+            return connection.Query<Session>(sql);
         }   
     }
     public static void CreateTable()
