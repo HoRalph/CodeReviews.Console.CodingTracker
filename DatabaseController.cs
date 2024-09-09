@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using Microsoft.Data.Sqlite;
 using Dapper;
 using System.Globalization;
-using System.ComponentModel;
 public class session
 {
     public string Id {get; set;}
@@ -79,7 +78,7 @@ class DatabaseController
     }
         public static List<string> GetEndDates(int iD  =0)
     {
-        var sql = "SELECT EndDateTime FROM CodingSessions";
+        var sql = "SELECT EndDateTime FROM CodingSessions WHERE Id <> @iD";
         var parameters = new DynamicParameters();
         parameters.Add("@iD",iD);
         List<string> datesList = new List<string>();

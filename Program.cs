@@ -58,7 +58,9 @@ class Program
                     break;
                 
                 case 5:
-                    List<string> test = DatabaseController.GetStartDates();
+                    int ID = int.Parse(Console.ReadLine());
+                    List<string> test = DatabaseController.GetStartDates(ID);
+                    List<string> endtest = DatabaseController.GetEndDates(ID);
                     foreach(string date in test)
                     {
                         Console.WriteLine(date);
