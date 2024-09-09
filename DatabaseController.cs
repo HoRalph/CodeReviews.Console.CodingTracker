@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using Microsoft.Data.Sqlite;
 using Dapper;
 using System.Globalization;
+using System.ComponentModel;
 public class session
 {
     public string Id {get; set;}
@@ -29,7 +30,7 @@ class DatabaseController
             connection.Execute(sql);
         }   
     }
-    public static IEnumerable<session> ExecuteQuery(string sql, object[] parameters)
+    public static IEnumerable<session> ExecuteQuery(string sql, DynamicParameters parameters)
     {
         string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
@@ -64,21 +65,25 @@ class DatabaseController
         }
         return rows;
     }
-    public static List<string> GetStartDates()
+    public static List<string> GetStartDates(int iD=-1)
     {
-        var sql = "SELECT StartDateTime FROM CodingSessions";
+        var sql = "SELECT StartDateTime FROM CodingSessions WHERE Id <> @iD";
+        var parameters = new DynamicParameters();
+        parameters.Add("@iD", iD);
         List<string> datesList = new List<string>();
-        foreach (var session in ExecuteQuery(sql))
+        foreach (var session in ExecuteQuery(sql, parameters))
         {
             datesList.Add(session.StartDateTime);
         }
         return datesList;
     }
-        public static List<string> GetEndDates()
+        public static List<string> GetEndDates(int iD  =-1)
     {
         var sql = "SELECT EndDateTime FROM CodingSessions";
+        var parameters = new DynamicParameters();
+        parameters.Add("@iD",iD);
         List<string> datesList = new List<string>();
-        foreach (var session in ExecuteQuery(sql))
+        foreach (var session in ExecuteQuery(sql, parameters))
         {
             datesList.Add(session.EndDateTime);
         }

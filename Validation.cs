@@ -5,7 +5,7 @@ class Validation
 {
     
     //Verify dates format
-    public static int VerifyDates(string startDate, string endDate)
+    public static int VerifyDates(string startDate, string endDate, int iD = -1)
     {
      if(!ValidDateTimeFormat(startDate))
      {
@@ -20,7 +20,7 @@ class Validation
     {
         return 3;
     }
-     else if (!ValidSession(startDate, endDate))
+     else if (!ValidSession(startDate, endDate, iD))
      {
         return 4;
      }
@@ -45,9 +45,8 @@ class Validation
         bool validInputEndDate = DateTime.TryParseExact(endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputEndDateValue);
         return inputEndDateValue > inputStartDateValue;
     }
-        
     //verify no overlap dates
-    public static bool ValidSession(string startDate, string endDate)
+    public static bool ValidSession(string startDate, string endDate, int iD)
     {
         /*
             if startDate <= existing enDate date or endDate > = existing startDates then it is an invalid session
@@ -57,17 +56,19 @@ class Validation
         */       
         CultureInfo enUS = new CultureInfo("en-US");
         DateTime dateValue = DateTime.Today;
-        List<string> startDates = DatabaseController.GetStartDates();
-        List<string> endDates = DatabaseController.GetEndDates();
-        foreach (string _startDate in startDates )
+        List<string> startDates = DatabaseController.GetStartDates(iD);
+        List<string> endDates = DatabaseController.GetEndDates(iD);
+        if (startDates.Count == 0 || endDates.Count == 0)
         {
-            foreach(string _endDate in endDates)
-            {
-                bool validStartDate = DateTime.TryParseExact(_startDate, "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime startDateValue);
-                bool validEndDate = DateTime.TryParseExact(_endDate, "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime endDateValue);
+            return true;
+        }
+        for (int i = 0; i<=startDates.Count;i++)
+        {
+                bool validStartDate = DateTime.TryParseExact(startDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime startDateValue);
+                bool validEndDate = DateTime.TryParseExact(endDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime endDateValue);
                 bool validInputStartDate = DateTime.TryParseExact(startDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputStartDateValue);
                 bool validInputEndDate = DateTime.TryParseExact(endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputEndDateValue);
-                if (inputStartDateValue <= endDateValue && inputStartDateValue >= startDateValue)
+                if ((inputStartDateValue <= endDateValue) && (inputStartDateValue >= startDateValue))
                 {
                     return false;
                 }
@@ -75,7 +76,6 @@ class Validation
                 {
                     return false;
                 }
-            }
         }
         return true;
     }

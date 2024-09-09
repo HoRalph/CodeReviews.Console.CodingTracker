@@ -75,6 +75,42 @@ class Input
             }
         }
     }
+    public static void InsertInput(int iD)
+    {
+        bool validDate = false;
+
+        while(!validDate)
+        {
+            int verifyResults = 99;
+            while(verifyResults>0)
+            {
+            Console.WriteLine("Please enter the start data/time in MM/DD/yyyy HH:MM");
+            startDateTime = Console.ReadLine();
+            validDate = Validation.ValidDateTimeFormat(startDateTime);
+            Console.WriteLine("Please enter the End data/time in MM/DD/yyyy HH:MM");
+            endDateTime = Console.ReadLine();
+            verifyResults =  Validation.VerifyDates(startDateTime, endDateTime, iD);
+            
+            switch (verifyResults)
+            {
+                case 1:
+                    Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
+                    break;
+                case 2:
+                    Console.WriteLine("Invalid date time format! Please re-enter in MM/DD/yyyy HH:MM.");
+                    break;
+                case 3:
+                    Console.WriteLine("Start date time does not precede end date time. Please re-enter.");
+                    break;
+                case 4:
+                    Console.WriteLine("Invalid session! overlapping sessions. Please re-enter.");
+                    break;                
+                default:
+                    break;
+            }
+            }
+        }
+    }
     public static void InputId()
     {        
         bool validInput = false;

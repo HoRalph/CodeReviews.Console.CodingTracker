@@ -39,7 +39,7 @@ class Program
                 
                 case 3:
                     Console.Clear();
-                    DatabaseController.ViewTable();
+                    Visualisation.DrawTable(DatabaseController.ViewTable());
                     Console.WriteLine();
                     Input.InputId();
                     DatabaseController.DeleteRecord(Input.updateId);
@@ -47,10 +47,10 @@ class Program
                 
                 case 4:
                     Console.Clear();
-                    DatabaseController.ViewTable();
+                    Visualisation.DrawTable(DatabaseController.ViewTable());
                     Console.WriteLine();
                     Input.InputId();
-                    Input.InsertInput();
+                    Input.InsertInput(Input.updateId);
                     mySession.StartDate = mySession.ConvertDate(Input.startDateTime);
                     mySession.EndDate = mySession.ConvertDate(Input.endDateTime);
                     mySession.Duration = mySession.EndDate - mySession.StartDate;
@@ -58,7 +58,12 @@ class Program
                     break;
                 
                 case 5:
-                    DatabaseController.DeleteTable();
+                    List<string> test = DatabaseController.GetStartDates(16);
+                    foreach(string date in test)
+                    {
+                        Console.WriteLine(date);
+                    }
+                    //DatabaseController.DeleteTable();
                     break;
                 
                 default:
