@@ -55,7 +55,6 @@ class Validation
             
         */       
         CultureInfo enUS = new CultureInfo("en-US");
-        DateTime dateValue = DateTime.Today;
         List<string> startDates = DatabaseController.GetStartDates(iD);
         List<string> endDates = DatabaseController.GetEndDates(iD);
         if (startDates.Count == 0 || endDates.Count == 0)
@@ -64,8 +63,8 @@ class Validation
         }
         for (int i = 0; i<startDates.Count;i++)
         {
-                bool validStartDate = DateTime.TryParseExact(startDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime startDateValue);
-                bool validEndDate = DateTime.TryParseExact(endDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime endDateValue);
+                DateTime.TryParseExact(startDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime startDateValue);
+                DateTime.TryParseExact(endDates[i], "M/d/yyyy HH:mm:ss tt",enUS, DateTimeStyles.None, out DateTime endDateValue);
                 DateTime.TryParseExact(startDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputStartDateValue);
                 DateTime.TryParseExact(endDate, "MM/dd/yyyy HH:mm",enUS, DateTimeStyles.None, out DateTime inputEndDateValue);
                 if ((inputStartDateValue <= endDateValue) && (inputStartDateValue >= startDateValue))

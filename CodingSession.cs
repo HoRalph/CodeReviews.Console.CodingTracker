@@ -2,10 +2,8 @@ using System;
 using System.Collections.Specialized;
 using Microsoft.Data.Sqlite;
 using System.Globalization;
-//namespace Program;
 public class CodingSession
 {
-    //startTime, endTime, Duration
     public  string startDateString;
     public  string endDateString;
     private DateTime startDate;

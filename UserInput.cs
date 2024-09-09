@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 class Input
 {
     public static string?startDateTime="";
     public static string?endDateTime="";
-    public static int updateId=0;
+    public static int updateId;
     public static int Menu()
     {
         string?result = "";
