@@ -1,5 +1,4 @@
 using System;
-using System.Configuration;
 using System.Collections.Specialized;
 using Microsoft.Data.Sqlite;
 using Dapper;
@@ -14,7 +13,7 @@ class DatabaseController
 {
     public static void ExecuteNonQuery(string sql, object[] parameters)
     {
-        string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+        string?connectionString = System.Configuration.ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
         {
             connection.Execute(sql, parameters);
@@ -22,7 +21,7 @@ class DatabaseController
     }
         public static void ExecuteNonQuery(string sql)
     {
-        string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+        string?connectionString = System.Configuration.ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
         {
             connection.Execute(sql);
@@ -30,7 +29,7 @@ class DatabaseController
     }
     public static IEnumerable<Session> ExecuteQuery(string sql, DynamicParameters parameters)
     {
-        string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+        string?connectionString = System.Configuration.ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
         {
             return connection.Query<Session>(sql, parameters);
@@ -38,7 +37,7 @@ class DatabaseController
     }
     public static IEnumerable<Session> ExecuteQuery(string sql)
     {
-        string?connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+        string?connectionString = System.Configuration.ConfigurationManager.AppSettings.Get("connectionString");
         using (var connection = new SqliteConnection(connectionString))
         {
             return connection.Query<Session>(sql);

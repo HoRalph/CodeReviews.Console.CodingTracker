@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Collections.Specialized;
 namespace Program;
 
@@ -7,7 +6,7 @@ class Program
 {
     public static void Main(String[] args)
     {
-        Console.WriteLine(ConfigurationManager.AppSettings.Get("key1"));
+        Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings.Get("key1"));
         
         while(true)
         {
